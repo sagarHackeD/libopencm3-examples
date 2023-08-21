@@ -17,6 +17,11 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+##  dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D *.bin -w
+
+VID = 0483
+PID = df11
+
 BINARY = miniblink
 
 LDSCRIPT = ../chepo.ld

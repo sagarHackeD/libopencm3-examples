@@ -39,6 +39,7 @@ OBJCOPY		:= $(PREFIX)objcopy
 OBJDUMP		:= $(PREFIX)objdump
 GDB		:= $(PREFIX)gdb
 STFLASH		= $(shell which st-flash)
+DFUUTIL		= $(shell which dfu-util)
 STYLECHECK	:= /checkpatch.pl
 STYLECHECKFLAGS	:= --no-tree -f --terse --mailback
 STYLECHECKFILES	:= $(shell find . -name '*.[ch]')
@@ -264,6 +265,10 @@ else
 		   -x $(EXAMPLES_SCRIPT_DIR)/black_magic_probe_flash.scr \
 		   $(*).elf
 endif
+
+%.dfu: %.bin
+	@printf "  DFU  $<\n"
+	$(DFUUTIL) -d $(VID):$(PID) -a 0 -s 0x08000000:leave -D $(*).bin -w
 
 .PHONY: images clean stylecheck styleclean elf bin hex srec list
 
