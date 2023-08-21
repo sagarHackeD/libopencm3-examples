@@ -22,6 +22,8 @@
 VID = 0483
 PID = df11
 
+SERIAL=FFFFFFFEFFFF
+
 BINARY = miniblink
 
 LDSCRIPT = ../chepo.ld
